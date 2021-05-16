@@ -9,10 +9,10 @@ RUN apt-get update && apt-get install -y openjdk-11-jdk && \
 
 RUN dotnet sonnarscanner begin \
     /n:"Org: my_project" \
-    /v:"version_id" \
+    /v:"1" \
     /k:"project: my_project" \
     /d:sonnar.host.url="localhost:9000" \
-    /d:sonnar.login="token" \
+    /d:sonnar.login="988f29c09e190bd8b79984da62174b81d10e52f8" \
     /d:sonnar.cs.opencover.reportsPaths=coverage.opencover.xml
 
 
@@ -29,7 +29,7 @@ RUN ["dotnet","publish","./src/Blogifier/Blogifier.csproj","-o","./outputs" ]
 RUN coverlet /opt/blogifier/tests/Blogifier.Tests/bin/Debug/net5.0/Blogifier.Tests.dll \ 
     --target "dotnet" --targetargs "test --no-build" --format opencover
 
-RUN dotnet sonarscanner end /d:sonar.login="token"
+RUN dotnet sonarscanner end /d:sonar.login="988f29c09e190bd8b79984da62174b81d10e52f8"
 
 EXPOSE 80
 
