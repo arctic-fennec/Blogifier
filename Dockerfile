@@ -34,7 +34,7 @@ RUN dotnet sonarscanner end /d:sonar.login="7f6e0b8e257464ddb7f578d8d9fc883bb311
 
 EXPOSE 80
 
-# FROM mcr.microsoft.com/dotnet/aspnet:5.0-alpine as run
-# COPY --from=base /app/blogifier/outputs /app/blogifier/outputs
-# WORKDIR /app/blogifier/outputs
-# ENTRYPOINT ["dotnet", "Blogifier.dll"]
+FROM mcr.microsoft.com/dotnet/aspnet:5.0-alpine as run
+COPY --from=build-env /app/blogifier/outputs /app/blogifier/outputs
+WORKDIR /app/blogifier/outputs
+ENTRYPOINT ["dotnet", "Blogifier.dll"]
