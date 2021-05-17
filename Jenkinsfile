@@ -13,12 +13,13 @@ pipeline {
         }
         stage('Docker build') {
             steps {
-                sh "docker build --network=host -t localhost:8083/jenkins_task ."
+                sh "docker build --network=host -t localhost:8082/blogifier ."
             }
         }
-        stage('Deploy') {
+        stage('Push') {
             steps {
-                echo 'Deploying....'
+                sh "docker login localhost:8082 -u admin -p ADMIN"
+				sh "docker push localhost:8082/blogifier"
             }
         }
     }
