@@ -11,9 +11,9 @@ pipeline {
                 sh "ls -lat"
             }
         }
-        stage('Test') {
+        stage('Docker build') {
             steps {
-                echo 'Testing..'
+                sh "docker build --network=host -t localhost:8083/jenkins_task ."
             }
         }
         stage('Deploy') {
